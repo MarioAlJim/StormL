@@ -89,6 +89,16 @@
     :goto_0
     if-lt v1, v2, :cond_1
 
+    # Si no se encuentra coincidencia exacta 5650, retornar la primera configuracion disponible
+    if-lez v2, :cond_empty
+
+    const/4 v0, 0x0
+
+    aget-object v0, p3, v0
+
+    return-object v0
+
+    :cond_empty
     const/4 v0, 0x0
 
     :cond_0
@@ -289,6 +299,43 @@
 
     if-gtz v4, :cond_1
 
+    # Fallback a especificacion estandar OpenGL ES 2.0 si no coincide 565
+    const/4 v0, 0x3
+
+    new-array v2, v0, [I
+
+    const/4 v0, 0x0
+
+    const/16 v1, 0x3040
+
+    aput v1, v2, v0
+
+    const/4 v0, 0x1
+
+    const/4 v1, 0x4
+
+    aput v1, v2, v0
+
+    const/4 v0, 0x2
+
+    const/16 v1, 0x3038
+
+    aput v1, v2, v0
+
+    const/4 v3, 0x0
+
+    move-object v0, p1
+
+    move-object v1, p2
+
+    invoke-interface/range {v0 .. v5}, Ljavax/microedition/khronos/egl/EGL10;->eglChooseConfig(Ljavax/microedition/khronos/egl/EGLDisplay;[I[Ljavax/microedition/khronos/egl/EGLConfig;I[I)Z
+
+    const/4 v0, 0x0
+
+    aget v4, v5, v0
+
+    if-gtz v4, :cond_1
+
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "No configs match configSpec"
@@ -325,6 +372,15 @@
 
     if-nez v0, :cond_3
 
+    if-lez v4, :cond_fail
+
+    const/4 v0, 0x0
+
+    aget-object v0, v3, v0
+
+    return-object v0
+
+    :cond_fail
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "No config chosen"
