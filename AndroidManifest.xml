@@ -3,7 +3,7 @@
     package="com.marioaljim.storml"
     android:installLocation="auto">
 
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34" />
+    <uses-sdk android:minSdkVersion="31" android:targetSdkVersion="34" />
 
     <uses-feature android:name="android.software.live_wallpaper" />
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />

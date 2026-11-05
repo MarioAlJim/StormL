@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.marioaljim.storml"
-        minSdk = 21
+        minSdk = 31
         targetSdk = 34
         versionCode = 23
         versionName = "2.25"
