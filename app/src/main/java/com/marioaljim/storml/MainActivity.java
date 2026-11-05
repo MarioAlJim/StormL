@@ -689,7 +689,8 @@ public class MainActivity extends Activity {
                 "• Establecer Fondo: Toca el botón inferior para abrir el previsualizador de Android y aplicar el fondo animado a tu pantalla principal o de bloqueo.\n\n" +
                 "• Iluminación y Tinte: Cambia la luz ambiental o activa el modo automático para sincronizarse con la hora del día.\n\n" +
                 "• Personalización: Selecciona el cielo, la densidad de nubes, el tipo de lluvia y la frecuencia o color de los relámpagos.\n\n" +
-                "• Interacción Táctil: Activa 'Tocar la pantalla' para generar relámpagos donde toques.");
+                "• Interacción Táctil: Activa 'Tocar la pantalla' para generar relámpagos donde toques.\n\n" +
+                "• Nota para Xiaomi / Redmi / POCO: Si MIUI/HyperOS no carga el fondo o se congela, ve a Ajustes > Apps > Tormenta > Ahorro de batería y selecciona 'Sin restricciones' y activa 'Inicio automático'.");
         builder.setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -700,23 +701,65 @@ public class MainActivity extends Activity {
     }
 
     private void applyWallpaper() {
-        try {
-            Intent intent;
-            if (Build.VERSION.SDK_INT >= 16) {
-                intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
-                intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-                        new ComponentName(this, "com.marioaljim.storml.WallpaperService"));
-            } else {
-                intent = new Intent(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER);
-            }
-            startActivity(intent);
-        } catch (Exception e) {
+        ComponentName component = new ComponentName(this, "com.marioaljim.storml.WallpaperService");
+
+        boolean isXiaomi = Build.MANUFACTURER != null && (
+                Build.MANUFACTURER.equalsIgnoreCase("xiaomi") ||
+                Build.MANUFACTURER.equalsIgnoreCase("redmi") ||
+                Build.MANUFACTURER.equalsIgnoreCase("poco")
+        );
+
+        // 1. En Xiaomi/MIUI, intentar primero el LivePicker directo de AOSP para evitar bloqueos de la app Temas
+        if (isXiaomi) {
             try {
-                Intent chooser = new Intent(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER);
-                startActivity(chooser);
-            } catch (Exception ex) {
-                Toast.makeText(this, "No se pudo abrir el selector de fondos de pantalla animada", Toast.LENGTH_SHORT).show();
+                Intent pickerIntent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
+                pickerIntent.setComponent(new ComponentName("com.android.wallpaper.livepicker", "com.android.wallpaper.livepicker.LiveWallpaperChange"));
+                pickerIntent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT, component);
+                pickerIntent.putExtra("SET_LOCKSCREEN_WALLPAPER", true);
+                startActivity(pickerIntent);
+                return;
+            } catch (Exception ignored) {
             }
         }
+
+        // 2. Intent estandar ACTION_CHANGE_LIVE_WALLPAPER
+        try {
+            Intent intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
+            intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT, component);
+            intent.putExtra("SET_LOCKSCREEN_WALLPAPER", true);
+            startActivity(intent);
+            return;
+        } catch (Exception ignored) {
+        }
+
+        // 3. Intent directo a LivePicker AOSP (si 2 falla en otros dispositivos)
+        try {
+            Intent pickerIntent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
+            pickerIntent.setComponent(new ComponentName("com.android.wallpaper.livepicker", "com.android.wallpaper.livepicker.LiveWallpaperChange"));
+            pickerIntent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT, component);
+            pickerIntent.putExtra("SET_LOCKSCREEN_WALLPAPER", true);
+            startActivity(pickerIntent);
+            return;
+        } catch (Exception ignored) {
+        }
+
+        // 4. Selector general de fondos animados
+        try {
+            Intent chooser = new Intent(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER);
+            startActivity(chooser);
+            return;
+        } catch (Exception ignored) {
+        }
+
+        // 5. Intentar Google Wallpapers si esta instalado
+        try {
+            Intent googleWallpapers = new Intent();
+            googleWallpapers.setComponent(new ComponentName("com.google.android.apps.wallpaper", "com.google.android.apps.wallpaper.picker.CategoryPickerActivity"));
+            startActivity(googleWallpapers);
+            return;
+        } catch (Exception ignored) {
+        }
+
+        Toast.makeText(this, "No se pudo abrir el selector de fondos de pantalla animada", Toast.LENGTH_SHORT).show();
     }
 }
