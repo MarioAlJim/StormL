@@ -1,0 +1,28 @@
+attribute vec4 a_position;
+attribute vec2 a_texcoord_0;
+attribute vec3 a_normal;
+
+varying vec2 v_texcoord_0;
+
+varying vec3 v_color_0;
+
+uniform mat4 u_mtx_modelviewproj;
+
+uniform vec3 u_vec3_direction;
+
+uniform vec4 u_color_0;
+uniform vec4 u_color_1;
+
+void main()
+{
+	gl_Position = u_mtx_modelviewproj * a_position;
+	v_texcoord_0 = a_texcoord_0;
+	
+	float shading = dot( u_vec3_direction, a_normal );
+	
+	shading = max( 0.0, shading );
+	
+	vec4 lightningColor = u_color_1 * shading;
+	
+	v_color_0 = u_color_0.rgb + lightningColor.rgb;
+}

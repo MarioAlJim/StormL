@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_highmedlow">
+        <item>Alto</item>
+        <item>Medio</item>
+        <item>Basso</item>
+    </string-array>
+    <string-array name="array_veryhighmedlowverylow">
+        <item>Molto alto</item>
+        <item>Alto</item>
+        <item>Medio</item>
+        <item>Basso</item>
+        <item>Molto basso</item>
+    </string-array>
+    <string-array name="array_userain_desc">
+        <item>Da nuvola e ovunque</item>
+        <item>Da nuvola</item>
+        <item>Ovunque</item>
+        <item>Nessuno</item>
+    </string-array>
+    <string-array name="array_background_desc">
+        <item>Forte</item>
+        <item>Delicato</item>
+        <item>Pieno</item>
+    </string-array>
+    <string-array name="array_enabledisable">
+        <item>Attiva</item>
+        <item>Disattiva</item>
+    </string-array>
+    <string-array name="array_rightleft">
+        <item>Destra</item>
+        <item>Sinistra</item>
+    </string-array>
+</resources>

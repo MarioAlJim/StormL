@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:id="@id/howto_linearlayout" android:layout_width="fill_parent" android:layout_height="wrap_content"
+      xmlns:android="http://schemas.android.com/apk/res/android">
+        <TextView android:textSize="20.0dip" android:textColor="#ffffffff" android:gravity="center" android:id="@id/upsell_title" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="6.0dip" android:text="@string/upsell_title" />
+        <TextView android:id="@id/upsell_desc" android:background="@drawable/fifty_percent_black" android:paddingLeft="12.0dip" android:paddingTop="6.0dip" android:paddingRight="12.0dip" android:paddingBottom="6.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="4.0dip" android:layout_marginBottom="2.0dip" android:text="Description goes here" />
+        <LinearLayout android:orientation="horizontal" android:id="@id/horizlayout" android:layout_width="fill_parent" android:layout_height="wrap_content"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+            <TextView android:id="@id/upsell_bullet1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_marginTop="8.0dip" android:layout_marginRight="4.0dip" android:text="- Etc bullet1 etc" android:layout_weight="1.0" />
+            <TextView android:id="@id/upsell_bullet2" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_marginTop="8.0dip" android:layout_marginRight="4.0dip" android:text="- Etc bullet2 etc" android:layout_weight="1.0" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/horizlayout2" android:layout_width="fill_parent" android:layout_height="wrap_content"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+            <TextView android:id="@id/upsell_bullet3" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_marginTop="8.0dip" android:layout_marginRight="4.0dip" android:text="- Etc bullet3 etc" android:layout_weight="1.0" />
+            <TextView android:id="@id/upsell_bullet4" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_marginTop="8.0dip" android:layout_marginRight="4.0dip" android:text="- Etc bullet4 etc" android:layout_weight="1.0" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/horizlayout3" android:layout_width="fill_parent" android:layout_height="wrap_content"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+            <TextView android:id="@id/upsell_bullet5" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_marginTop="8.0dip" android:layout_marginRight="4.0dip" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:id="@id/buttons_linearlayout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:layout_marginTop="12.0dip" android:layout_marginRight="8.0dip" android:layout_marginBottom="4.0dip">
+        <Button android:id="@id/button_upgrade" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/upsell_getfull" android:lines="2" android:layout_weight="1.0" />
+        <Button android:id="@id/button_web" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/upsell_visitwebpage" android:lines="2" android:layout_weight="1.0" />
+        <Button android:id="@id/button_otherproducts" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/upsell_products" android:lines="2" android:layout_weight="1.0" />
+    </LinearLayout>
+</LinearLayout>

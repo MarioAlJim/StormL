@@ -1,0 +1,14 @@
+precision mediump float;
+
+varying vec2 v_texcoord_0;
+
+uniform sampler2D s_diffuse;
+uniform vec4 u_color_0;
+
+void main()
+{
+	vec4 sample = texture2D(s_diffuse, v_texcoord_0);
+	gl_FragColor.rgb = ( sample.rgb * u_color_0.a ) * u_color_0.rgb;
+	gl_FragColor.a = sample.a * u_color_0.a;
+}
+

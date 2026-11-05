@@ -1,0 +1,43 @@
+attribute vec4 a_position;
+attribute vec2 a_texcoord_0;
+
+varying vec2 v_texcoord_0;
+
+uniform mat4 u_mtx_modelviewproj;
+uniform vec3 u_vec3_translation;
+uniform vec3 u_vec3_scale;
+uniform float u_float_angle;
+
+void main()
+{
+	float r = radians(u_float_angle);
+	float rCos = cos(r);
+	float rSin = sin(r);
+
+	vec4 new_position;
+	new_position.xyz = a_position.xyz * u_vec3_scale; // scale the position by the uniform argument
+	new_position.w = a_position.w;
+	
+#if defined( ROTATE_X )
+	float axisX = new_position.x;
+	float axisY = new_position.y * rCos - new_position.z * rSin;
+	float axisZ = new_position.y * rSin + new_position.z * rCos;
+#elif defined( ROTATE_Z )
+	float axisX = new_position.x * rCos - new_position.y * rSin;
+	float axisY = new_position.x * rSin + new_position.y * rCos;
+	float axisZ = new_position.z;
+#else  // ROTATE_Y
+	float axisX = new_position.x * rCos - new_position.z * rSin;
+	float axisY = new_position.y;
+	float axisZ = new_position.x * rSin + new_position.z * rCos;
+#endif
+	
+	new_position.x = axisX;
+	new_position.y = axisY;
+	new_position.z = axisZ;
+	
+	new_position.xyz += u_vec3_translation; // finally, translate into place
+	
+	gl_Position = u_mtx_modelviewproj * new_position; // adjust by the matrix, and we're done!
+	v_texcoord_0 = a_texcoord_0;
+}

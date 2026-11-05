@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:preferencecolor="http://schemas.android.com/apk/res/fishnoodle.storm"
+  xmlns:preferenceslider="http://schemas.android.com/apk/res/fishnoodle.storm">
+    <PreferenceCategory android:title="@string/title_appearancePreferences">
+        <ListPreference android:entries="@array/array_background_desc" android:title="@string/pref_background" android:key="pref_background" android:summary="@string/pref_background_desc" android:defaultValue="bg3" android:dialogTitle="@string/pref_background" android:entryValues="@array/array_background" />
+        <fishnoodle._engine30.PreferenceSlider android:title="@string/pref_numclouds" android:key="pref_numclouds" android:summary="@string/pref_numclouds_desc" android:defaultValue="9" preferenceslider:min="5" preferenceslider:max="13" preferenceslider:minLabel="5" preferenceslider:maxLabel="13" />
+        <ListPreference android:entries="@array/array_userain_desc" android:title="@string/pref_userain" android:key="pref_userain" android:summary="@string/pref_userain_desc" android:defaultValue="1" android:dialogTitle="@string/pref_userain" android:entryValues="@array/array_3210" />
+        <CheckBoxPreference android:title="@string/pref_usedrops" android:key="pref_usedrops" android:summary="@string/pref_usedrops_desc" android:defaultValue="false" />
+        <CheckBoxPreference android:title="@string/pref_minimalist" android:key="pref_minimalist" android:summary="@string/pref_minimalist_desc" android:defaultValue="false" />
+        <CheckBoxPreference android:title="@string/pref_flashlights" android:key="pref_flashlights" android:summary="@string/pref_flashlights_desc" android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/title_touchPreferences">
+        <CheckBoxPreference android:title="@string/pref_tapforlightning" android:key="pref_tapforlightning" android:summary="@string/pref_tapforlightning_desc" android:defaultValue="false" />
+        <CheckBoxPreference android:title="@string/pref_striketouchpos" android:key="pref_striketouchpos" android:summary="@string/pref_striketouchpos_desc" android:dependency="pref_tapforlightning" android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/title_colorPreferences">
+        <fishnoodle._engine30.PreferenceColor android:title="@string/pref_boltcolor" android:key="pref_boltcolor" android:summary="@string/pref_boltcolor_desc" android:dependency="pref_randomboltcolor" android:defaultValue="1 1 1 1" />
+        <CheckBoxPreference android:title="@string/pref_randomboltcolor" android:key="pref_randomboltcolor" android:summary="@string/pref_randomboltcolor_desc" android:defaultValue="false" android:disableDependentsState="true" />
+        <fishnoodle._engine30.PreferenceColor android:title="@string/pref_lightcolor" android:key="pref_lightcolor" android:summary="@string/pref_lightcolor_desc" android:dependency="pref_usetimeofday" android:defaultValue="0.33 0.33 0.7 1" />
+        <CheckBoxPreference android:title="@string/pref_usetimeofday" android:key="pref_usetimeofday" android:summary="@string/pref_usetimeofday_desc" android:defaultValue="false" android:disableDependentsState="true" />
+        <PreferenceScreen android:title="@string/title_timeofdaysettings">
+            <fishnoodle._engine30.PreferenceColor android:title="@string/pref_todlightcolor1" android:key="pref_todlightcolor1" android:summary="@string/pref_todlightcolor1_desc" android:defaultValue="@string/DEFAULT_TOD1_COLOR" />
+            <fishnoodle._engine30.PreferenceColor android:title="@string/pref_todlightcolor2" android:key="pref_todlightcolor2" android:summary="@string/pref_todlightcolor2_desc" android:defaultValue="@string/DEFAULT_TOD2_COLOR" />
+            <fishnoodle._engine30.PreferenceColor android:title="@string/pref_todlightcolor3" android:key="pref_todlightcolor3" android:summary="@string/pref_todlightcolor3_desc" android:defaultValue="@string/DEFAULT_TOD3_COLOR" />
+            <fishnoodle._engine30.PreferenceColor android:title="@string/pref_todlightcolor4" android:key="pref_todlightcolor4" android:summary="@string/pref_todlightcolor4_desc" android:defaultValue="@string/DEFAULT_TOD4_COLOR" />
+        </PreferenceScreen>
+        <Preference android:title="@string/pref_defaultcolors" android:key="pref_defaultcolors" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/title_speedPreferences">
+        <fishnoodle._engine30.PreferenceSlider android:title="@string/pref_boltfrequency" android:key="pref_boltfrequency" android:summary="@string/pref_boltfrequency_desc" android:defaultValue="3" preferenceslider:min="1" preferenceslider:max="15" preferenceslider:minLabel="1" preferenceslider:maxLabel="15" />
+        <ListPreference android:entries="@array/array_veryhighmedlowverylow" android:title="@string/pref_windspeed" android:key="pref_windspeed" android:summary="@string/pref_windspeed_desc" android:defaultValue="3" android:dialogTitle="@string/pref_windspeed" android:entryValues="@array/array_54321" />
+        <ListPreference android:entries="@array/array_highmedlow" android:title="@string/pref_cameraspeed" android:key="pref_cameraspeed" android:summary="@string/pref_cameraspeed_desc" android:defaultValue="1" android:dialogTitle="@string/pref_cameraspeed" android:entryValues="@array/array_210" />
+    </PreferenceCategory>
+</PreferenceScreen>

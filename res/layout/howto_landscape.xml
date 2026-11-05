@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/howto_linearlayout" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="20.0dip" android:textColor="#ffffffff" android:gravity="center" android:id="@id/TextView06" android:background="#ff333333" android:paddingTop="3.0dip" android:paddingBottom="3.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/howto_title" />
+    <LinearLayout android:orientation="horizontal" android:id="@id/howto_landscape_columncontainer" android:layout_width="fill_parent" android:layout_height="fill_parent" android:baselineAligned="false">
+        <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:id="@id/howto_landscape_column1" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <TextView android:textColor="#ffffffff" android:id="@id/howto_description" android:paddingLeft="12.0dip" android:paddingTop="6.0dip" android:paddingRight="12.0dip" android:paddingBottom="4.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/howto_text1" />
+            <TextView android:id="@id/TextView02" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="4.0dip" android:text="@string/howto_text2" />
+            <TextView android:id="@id/TextView03" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="4.0dip" android:text="@string/howto_text3" />
+            <TextView android:id="@id/TextView04" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="4.0dip" android:text="@string/howto_text4" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical" android:id="@id/howto_landscape_column2" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="4.0dip" android:layout_weight="1.75">
+            <Button android:id="@id/button_takeme" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_marginRight="12.0dip" android:text="@string/howto_takeme" />
+            <Button android:id="@id/button_upgrade" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_marginTop="-2.0dip" android:layout_marginRight="12.0dip" android:layout_marginBottom="-2.0dip" android:text="@string/howto_getdonation" />
+            <Button android:id="@id/button_otherproducts" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_marginTop="-2.0dip" android:layout_marginRight="12.0dip" android:layout_marginBottom="-2.0dip" android:text="@string/howto_otherproducts" />
+            <Button android:id="@id/button_close" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_marginRight="12.0dip" android:text="@string/howto_close" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

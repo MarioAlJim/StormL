@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_highmedlow">
+        <item>高い</item>
+        <item>中程度</item>
+        <item>低い</item>
+    </string-array>
+    <string-array name="array_veryhighmedlowverylow">
+        <item>非常に高い</item>
+        <item>高い</item>
+        <item>中程度</item>
+        <item>低い</item>
+        <item>非常に低い</item>
+    </string-array>
+    <string-array name="array_userain_desc">
+        <item>雲からおよび全体から</item>
+        <item>雲から</item>
+        <item>全体</item>
+        <item>なし</item>
+    </string-array>
+    <string-array name="array_background_desc">
+        <item>強い</item>
+        <item>スムーズ</item>
+        <item>ビジー</item>
+    </string-array>
+    <string-array name="array_enabledisable">
+        <item>有効にする</item>
+        <item>無効にする</item>
+    </string-array>
+    <string-array name="array_rightleft">
+        <item>右</item>
+        <item>左</item>
+    </string-array>
+</resources>

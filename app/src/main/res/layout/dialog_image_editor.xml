@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="50.0dip">
+        <ImageButton android:id="@id/dialog_image_editor_rotate_ccw" android:layout_width="0.0dip" android:layout_height="fill_parent" android:src="@drawable/rotate_ccw" android:scaleType="fitCenter" android:layout_weight="1.0" android:contentDescription="@string/dialog_image_editor_rotate_ccw" />
+        <ImageButton android:id="@id/dialog_image_editor_rotate_cw" android:layout_width="0.0dip" android:layout_height="fill_parent" android:src="@drawable/rotate_cw" android:scaleType="fitCenter" android:layout_weight="1.0" android:contentDescription="@string/dialog_image_editor_rotate_cw" />
+        <ImageButton android:id="@id/dialog_image_editor_help" android:layout_width="0.0dip" android:layout_height="fill_parent" android:src="@drawable/help" android:scaleType="fitCenter" android:layout_weight="1.0" android:contentDescription="@string/dialog_image_editor_help" />
+    </LinearLayout>
+    <RelativeLayout android:id="@id/dialog_image_editor_image_layout" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <Button android:id="@id/dialog_image_editor_cancel" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@android:string/cancel" android:layout_weight="1.0" />
+        <Button android:id="@id/dialog_image_editor_reset" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@string/dialog_image_editor_reset" android:layout_weight="1.0" />
+        <Button android:id="@id/dialog_image_editor_ok" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@android:string/ok" android:layout_weight="1.0" />
+    </LinearLayout>
+</LinearLayout>

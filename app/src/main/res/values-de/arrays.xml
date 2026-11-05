@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_highmedlow">
+        <item>Hoch</item>
+        <item>Mittel</item>
+        <item>Niedrig</item>
+    </string-array>
+    <string-array name="array_veryhighmedlowverylow">
+        <item>Sehr hoch</item>
+        <item>Hoch</item>
+        <item>Mittel</item>
+        <item>Niedrig</item>
+        <item>Sehr niedrig</item>
+    </string-array>
+    <string-array name="array_userain_desc">
+        <item>Pro Wolke und überall</item>
+        <item>Pro Wolke</item>
+        <item>Überall</item>
+        <item>Nichts</item>
+    </string-array>
+    <string-array name="array_background_desc">
+        <item>Stark</item>
+        <item>Glatt</item>
+        <item>Aktiv</item>
+    </string-array>
+    <string-array name="array_enabledisable">
+        <item>Aktivieren</item>
+        <item>Deaktivieren</item>
+    </string-array>
+    <string-array name="array_rightleft">
+        <item>Rechts</item>
+        <item>Links</item>
+    </string-array>
+</resources>

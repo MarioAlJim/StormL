@@ -1,0 +1,16 @@
+attribute vec4 a_position;
+
+uniform mat4 u_mtx_modelviewproj;
+uniform float u_float_size;
+
+uniform mat4 u_mtx_modelview_inverse;
+
+void main()
+{
+	vec4 view_pos = u_mtx_modelview_inverse * vec4(0.0, 0.0, 0.0, 1.0);
+	float pointDist = 80.0 / distance( a_position, view_pos );
+	
+	gl_Position = u_mtx_modelviewproj * a_position;
+	
+	gl_PointSize = u_float_size * pointDist;
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dialog_image_editor_margin_left">12.0dip</dimen>
+    <dimen name="dialog_image_editor_margin_top">12.0dip</dimen>
+    <dimen name="dialog_image_editor_margin_right">12.0dip</dimen>
+    <dimen name="dialog_image_editor_margin_bottom">12.0dip</dimen>
+</resources>

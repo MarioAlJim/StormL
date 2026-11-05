@@ -1,0 +1,12 @@
+attribute vec4 a_position;
+attribute vec2 a_texcoord_0;
+
+varying vec2 v_texcoord_0;
+
+uniform mat4 u_mtx_modelviewproj;
+
+void main()
+{
+	gl_Position = u_mtx_modelviewproj * a_position;
+	v_texcoord_0 = a_texcoord_0;
+}

@@ -1,0 +1,26 @@
+attribute vec4 a_position;
+attribute vec2 a_texcoord_0;
+
+varying vec2 v_texcoord_0;
+
+uniform mat4 u_mtx_modelviewproj;
+
+uniform vec3 u_vec3_translation; // character offset in X and Z
+uniform vec3 u_vec3_scale; // character height and width (width changes per character width)
+
+uniform vec3 u_vec3_offset; // how much to translate the character texcoords by 
+
+ // how much to scale the X texcoords by (per character width)
+#define FONT_SIZE u_vec3_offset.z
+
+void main()
+{
+	vec4 new_position;
+	new_position.xyz = ( a_position.xyz * u_vec3_scale ) + u_vec3_translation; // physically get the character into position
+	new_position.w = a_position.w;
+
+	gl_Position = u_mtx_modelviewproj * new_position; // adjust by the matrix -- the geometry on-screen is now done
+	
+	v_texcoord_0.x = a_texcoord_0.x * FONT_SIZE + u_vec3_offset.x;
+	v_texcoord_0.y = a_texcoord_0.y + u_vec3_offset.y;
+}

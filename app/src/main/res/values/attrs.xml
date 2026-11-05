@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="calendarHeaderLayout" format="reference" />
+    <attr name="calendarLayout" format="reference" />
+    <attr name="calendarItemLayout" format="reference" />
+    <attr name="iconSrc" format="reference" />
+    <attr name="prefix" format="string" />
+    <attr name="widgetlayout" format="reference" />
+    <attr name="widgetlayout23" format="reference" />
+    <attr name="listitemlayout" format="reference" />
+    <attr name="listitemlayout23" format="reference" />
+    <attr name="listitemhighlightdrawable" format="reference" />
+    <attr name="listitemhighlighttextcolor" format="color" />
+    <attr name="entries" format="reference" />
+    <attr name="entryValues" format="reference" />
+    <attr name="defaultSelection" format="integer" />
+    <attr name="separator" format="string" />
+    <attr name="minSelection" format="integer" />
+    <attr name="minSelectionText" format="string" />
+    <attr name="minSelection1Text" format="string" />
+    <attr name="aspectRatio" format="float" />
+    <attr name="minScale" format="float" />
+    <attr name="editorDialogTitle" format="string" />
+    <attr name="editorDialogTheme" format="reference" />
+    <attr name="editorDialogHideWindowTitle" format="boolean" />
+    <attr name="imageChooserTitle" format="string" />
+    <attr name="imageChooserToolTip" format="string" />
+    <attr name="overlayImage" format="reference" />
+    <attr name="saveSlots" format="reference" />
+    <attr name="savePrefs" format="reference" />
+    <attr name="emptyText" format="string" />
+    <attr name="saveText" format="string" />
+    <attr name="loadText" format="string" />
+    <attr name="cancelText" format="string" />
+    <attr name="min" format="integer" />
+    <attr name="max" format="integer" />
+    <attr name="minLabel" format="string" />
+    <attr name="maxLabel" format="string" />
+    <attr name="radioSharedKey" format="string" />
+    <attr name="radioValue" format="string" />
+</resources>

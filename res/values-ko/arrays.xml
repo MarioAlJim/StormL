@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_highmedlow">
+        <item>높음</item>
+        <item>중간</item>
+        <item>낮음</item>
+    </string-array>
+    <string-array name="array_veryhighmedlowverylow">
+        <item>매우 높음</item>
+        <item>높음</item>
+        <item>중간</item>
+        <item>낮음</item>
+        <item>매우 낮음</item>
+    </string-array>
+    <string-array name="array_userain_desc">
+        <item>구름마다 및 모든 곳</item>
+        <item>구름마다</item>
+        <item>모든 곳</item>
+        <item>없음</item>
+    </string-array>
+    <string-array name="array_background_desc">
+        <item>강함</item>
+        <item>부드러움</item>
+        <item>바쁨</item>
+    </string-array>
+    <string-array name="array_enabledisable">
+        <item>켜기</item>
+        <item>끄기</item>
+    </string-array>
+    <string-array name="array_rightleft">
+        <item>오른쪽</item>
+        <item>왼쪽</item>
+    </string-array>
+</resources>

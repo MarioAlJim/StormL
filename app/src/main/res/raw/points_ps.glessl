@@ -1,0 +1,9 @@
+precision mediump float;
+
+uniform sampler2D s_diffuse;
+uniform float u_float_size;
+
+void main()
+{
+	gl_FragColor = texture2D( s_diffuse, gl_PointCoord );
+}
