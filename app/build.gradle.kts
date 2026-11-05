@@ -41,7 +41,15 @@ val rebuildApkTask = tasks.register<Exec>("rebuildOriginalApk") {
     commandLine("cmd", "/c", "build_apk.bat")
 }
 
-// Asegurar que al ejecutar assembleDebug o installDebug se genere y sobreescriba el APK completo
-tasks.matching { it.name == "assembleDebug" || it.name == "assembleRelease" }.configureEach {
+// Asegurar que al empaquetar, ensamblar o instalar desde Android Studio se genere y sobreescriba el APK completo
+tasks.matching {
+    it.name.startsWith("package") || it.name.startsWith("assemble")
+}.configureEach {
     finalizedBy(rebuildApkTask)
+}
+
+tasks.matching {
+    it.name.startsWith("install")
+}.configureEach {
+    dependsOn(rebuildApkTask)
 }

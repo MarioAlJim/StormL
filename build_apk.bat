@@ -14,10 +14,12 @@ set "ZIPALIGN=%BUILD_TOOLS%\zipalign.exe"
 set "APKSIGNER=%BUILD_TOOLS%\apksigner.bat"
 set "KEYSTORE=C:\Users\Mario Jimenez\.android\debug.keystore"
 set "OUTPUT_DIR=%PROJECT_DIR%app\build\outputs\apk\debug"
+set "INTERMEDIATES_DIR=%PROJECT_DIR%app\build\intermediates\apk\debug"
 set "TEMP_APK=%TEMP%\storm_temp_build.apk"
 set "FINAL_APK=%OUTPUT_DIR%\app-debug.apk"
 
 if not exist "%OUTPUT_DIR%" mkdir "%OUTPUT_DIR%"
+if not exist "%INTERMEDIATES_DIR%" mkdir "%INTERMEDIATES_DIR%"
 
 echo [1/3] Compilando recursos, smali y manifiesto con Apktool...
 java -jar "%APKTOOL_JAR%" b "%PROJECT_DIR%." -o "%TEMP_APK%"
@@ -41,12 +43,14 @@ if %ERRORLEVEL% neq 0 (
     exit /b %ERRORLEVEL%
 )
 
+copy /y "%FINAL_APK%" "%INTERMEDIATES_DIR%\app-debug.apk" >nul
 copy /y "%FINAL_APK%" "%PROJECT_DIR%app-debug.apk" >nul
 
 echo.
 echo ========================================================
 echo  EXITO: APK generado y firmado correctamente!
 echo  Ruta 1: %FINAL_APK%
-echo  Ruta 2: %PROJECT_DIR%app-debug.apk
+echo  Ruta 2: %INTERMEDIATES_DIR%\app-debug.apk
+echo  Ruta 3: %PROJECT_DIR%app-debug.apk
 echo ========================================================
 echo.
