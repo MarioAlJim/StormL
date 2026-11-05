@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
   xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:preferencecolor="http://schemas.android.com/apk/res/fishnoodle.storm"
-  xmlns:preferenceslider="http://schemas.android.com/apk/res/fishnoodle.storm">
+  xmlns:preferencecolor="http://schemas.android.com/apk/res/fishnoodle.storm.remaster"
+  xmlns:preferenceslider="http://schemas.android.com/apk/res/fishnoodle.storm.remaster">
     <PreferenceCategory android:title="@string/title_appearancePreferences">
         <ListPreference android:entries="@array/array_background_desc" android:title="@string/pref_background" android:key="pref_background" android:summary="@string/pref_background_desc" android:defaultValue="bg3" android:dialogTitle="@string/pref_background" android:entryValues="@array/array_background" />
         <fishnoodle._engine30.PreferenceSlider android:title="@string/pref_numclouds" android:key="pref_numclouds" android:summary="@string/pref_numclouds_desc" android:defaultValue="9" preferenceslider:min="5" preferenceslider:max="13" preferenceslider:minLabel="5" preferenceslider:maxLabel="13" />

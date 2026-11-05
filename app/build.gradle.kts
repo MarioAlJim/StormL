@@ -7,7 +7,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "fishnoodle.storm"
+        applicationId = "fishnoodle.storm.remaster"
         minSdk = 21
         targetSdk = 34
         versionCode = 23

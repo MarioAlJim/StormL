@@ -60,6 +60,8 @@
 
     move-result-object v0
 
+    const-string v0, "fishnoodle.storm.WallpaperService"
+
     new-instance v1, Landroid/content/ComponentName;
 
     invoke-direct {v1, p1, v0}, Landroid/content/ComponentName;-><init>(Ljava/lang/String;Ljava/lang/String;)V

@@ -16,7 +16,7 @@
 .method public onCreate(Landroid/os/Bundle;)V
     .locals 1
 
-    const-string v0, "fishnoodle.storm"
+    const-string v0, "fishnoodle.storm.remaster"
 
     iput-object v0, p0, Lfishnoodle/storm/HowToActivity;->b:Ljava/lang/String;
 
