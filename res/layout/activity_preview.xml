@@ -24,7 +24,7 @@
             android:paddingTop="16dp"
             android:paddingBottom="24dp">
 
-            <!-- Encabezado Principal M3 con Titulo, Subtitulo y Boton de Ayuda -->
+            <!-- Encabezado Principal con Titulo, Subtitulo y Boton de Ayuda -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -128,7 +128,6 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Fila Cabecera Tarjeta -->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -316,7 +315,307 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Card 2: Nubes y Viento -->
+            <!-- Card 2: Iluminacion y Tinte Ambiental -->
+            <LinearLayout
+                android:id="@+id/cardLighting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/card_bg_modern"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:id="@+id/iconSun"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/badge_circle"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_sun"
+                        android:tint="#24C6D9"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_toEndOf="@id/iconSun"
+                        android:layout_toStartOf="@+id/statusLighting"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_centerVertical="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Iluminación Ambiental"
+                            android:textColor="#F2F2F7"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tinte de la tormenta según la hora o color fijo"
+                            android:textColor="#999BA8"
+                            android:textSize="11sp"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/statusLighting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="Manual"
+                        android:textColor="#24C6D9"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <!-- Switch: Luz automatica segun la hora del dia -->
+                <RelativeLayout
+                    android:id="@+id/rowTimeOfDay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="6dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@+id/checkTimeOfDay"
+                        android:layout_marginEnd="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Luz automática según la hora del día"
+                            android:textColor="#F2F2F7"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Adapta la luz solar (amanecer, día, ocaso, noche)"
+                            android:textColor="#999BA8"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <CheckBox
+                        android:id="@+id/checkTimeOfDay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+
+                <!-- Seccion Tinte Manual (Visible si TimeOfDay es false) -->
+                <LinearLayout
+                    android:id="@+id/layoutManualLight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tinte ambiental personalizado:"
+                        android:textColor="#999BA8"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <!-- Fila de Muestras de Color para Luz Ambiental -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <!-- Azul Tormenta (Default) -->
+                        <FrameLayout
+                            android:id="@+id/frameLightBlue"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/color_swatch_selected"
+                            android:padding="4dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/swatch_light_blue" />
+                        </FrameLayout>
+
+                        <!-- Medianoche -->
+                        <FrameLayout
+                            android:id="@+id/frameLightMidnight"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/color_swatch_unselected"
+                            android:padding="4dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/swatch_light_midnight" />
+                        </FrameLayout>
+
+                        <!-- Purpura -->
+                        <FrameLayout
+                            android:id="@+id/frameLightPurple"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/color_swatch_unselected"
+                            android:padding="4dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/swatch_light_purple" />
+                        </FrameLayout>
+
+                        <!-- Ocaso Ambar -->
+                        <FrameLayout
+                            android:id="@+id/frameLightAmber"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/color_swatch_unselected"
+                            android:padding="4dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/swatch_light_amber" />
+                        </FrameLayout>
+
+                        <!-- Ceniza -->
+                        <FrameLayout
+                            android:id="@+id/frameLightAsh"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/color_swatch_unselected"
+                            android:padding="4dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/swatch_light_ash" />
+                        </FrameLayout>
+
+                        <!-- Verde Tormenta -->
+                        <FrameLayout
+                            android:id="@+id/frameLightGreen"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:background="@drawable/color_swatch_unselected"
+                            android:padding="4dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/swatch_light_green" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Seccion Ciclo Horario (Visible si TimeOfDay es true) -->
+                <LinearLayout
+                    android:id="@+id/layoutTodLight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ciclo solar activo (Amanecer, Mediodía, Ocaso, Noche):"
+                        android:textColor="#999BA8"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="32dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="3dp"
+                            android:background="@drawable/chip_active"
+                            android:gravity="center"
+                            android:text="Amanecer"
+                            android:textColor="#24C6D9"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="32dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="3dp"
+                            android:background="@drawable/chip_active"
+                            android:gravity="center"
+                            android:text="Mediodía"
+                            android:textColor="#24C6D9"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="32dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="3dp"
+                            android:background="@drawable/chip_active"
+                            android:gravity="center"
+                            android:text="Atardecer"
+                            android:textColor="#24C6D9"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="32dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/chip_active"
+                            android:gravity="center"
+                            android:text="Noche"
+                            android:textColor="#24C6D9"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnResetTodColors"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:background="@drawable/chip_inactive"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:text="Restablecer Colores Predeterminados"
+                        android:textColor="#999BA8"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Card 3: Nubes y Viento -->
             <LinearLayout
                 android:id="@+id/cardClouds"
                 android:layout_width="match_parent"
@@ -541,7 +840,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Card 3: Lluvia y Efectos de Agua -->
+            <!-- Card 4: Lluvia y Efectos de Agua -->
             <LinearLayout
                 android:id="@+id/cardRain"
                 android:layout_width="match_parent"
@@ -700,7 +999,7 @@
                 </RelativeLayout>
             </LinearLayout>
 
-            <!-- Card 4: Rayos y Relampagos -->
+            <!-- Card 5: Rayos y Relampagos -->
             <LinearLayout
                 android:id="@+id/cardLightning"
                 android:layout_width="match_parent"
@@ -747,7 +1046,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Frecuencia de descargas y destellos ambientales"
+                            android:text="Frecuencia, destellos y color de los rayos"
                             android:textColor="#999BA8"
                             android:textSize="11sp"
                             android:layout_marginTop="2dp" />
@@ -884,9 +1183,117 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true" />
                 </RelativeLayout>
+
+                <!-- Seccion de Color Fijo de Rayos (Visible si Color Aleatorio es false) -->
+                <LinearLayout
+                    android:id="@+id/layoutBoltColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Color de los rayos:"
+                        android:textColor="#999BA8"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <!-- Blanco Puro (Default) -->
+                        <FrameLayout
+                            android:id="@+id/frameBoltWhite"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/color_swatch_selected"
+                            android:padding="4dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/swatch_bolt_white" />
+                        </FrameLayout>
+
+                        <!-- Azul Electrico -->
+                        <FrameLayout
+                            android:id="@+id/frameBoltBlue"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/color_swatch_unselected"
+                            android:padding="4dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/swatch_bolt_blue" />
+                        </FrameLayout>
+
+                        <!-- Cian Neon -->
+                        <FrameLayout
+                            android:id="@+id/frameBoltCyan"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/color_swatch_unselected"
+                            android:padding="4dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/swatch_bolt_cyan" />
+                        </FrameLayout>
+
+                        <!-- Amarillo Oro -->
+                        <FrameLayout
+                            android:id="@+id/frameBoltYellow"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/color_swatch_unselected"
+                            android:padding="4dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/swatch_bolt_yellow" />
+                        </FrameLayout>
+
+                        <!-- Purpura Neon -->
+                        <FrameLayout
+                            android:id="@+id/frameBoltPurple"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/color_swatch_unselected"
+                            android:padding="4dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/swatch_bolt_purple" />
+                        </FrameLayout>
+
+                        <!-- Rojo Carmesi -->
+                        <FrameLayout
+                            android:id="@+id/frameBoltRed"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:background="@drawable/color_swatch_unselected"
+                            android:padding="4dp">
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/swatch_bolt_red" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
             </LinearLayout>
 
-            <!-- Card 5: Interaccion Tactil -->
+            <!-- Card 6: Interaccion Tactil -->
             <LinearLayout
                 android:id="@+id/cardTouch"
                 android:layout_width="match_parent"
@@ -992,7 +1399,7 @@
                 </RelativeLayout>
             </LinearLayout>
 
-            <!-- Card 6: Camara y Rendimiento -->
+            <!-- Card 7: Camara y Rendimiento -->
             <LinearLayout
                 android:id="@+id/cardCamera"
                 android:layout_width="match_parent"

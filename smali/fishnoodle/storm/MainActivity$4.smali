@@ -33,7 +33,7 @@
         }
     .end annotation
 
-    .line 144
+    .line 159
     iput-object p1, p0, Lfishnoodle/storm/MainActivity$4;->this$0:Lfishnoodle/storm/MainActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -46,7 +46,7 @@
 .method public onClick(Landroid/view/View;)V
     .locals 1
 
-    .line 147
+    .line 162
     iget-object v0, p0, Lfishnoodle/storm/MainActivity$4;->this$0:Lfishnoodle/storm/MainActivity;
 
     invoke-static {v0}, Lfishnoodle/storm/MainActivity;->access$600(Lfishnoodle/storm/MainActivity;)Landroid/widget/FrameLayout;
@@ -63,7 +63,7 @@
 
     goto :goto_0
 
-    .line 148
+    .line 163
     :cond_0
     iget-object v0, p0, Lfishnoodle/storm/MainActivity$4;->this$0:Lfishnoodle/storm/MainActivity;
 
@@ -81,7 +81,7 @@
 
     goto :goto_0
 
-    .line 149
+    .line 164
     :cond_1
     iget-object v0, p0, Lfishnoodle/storm/MainActivity$4;->this$0:Lfishnoodle/storm/MainActivity;
 
@@ -97,7 +97,7 @@
 
     invoke-static {p1, v0}, Lfishnoodle/storm/MainActivity;->access$700(Lfishnoodle/storm/MainActivity;Ljava/lang/String;)V
 
-    .line 150
+    .line 165
     :cond_2
     :goto_0
     return-void

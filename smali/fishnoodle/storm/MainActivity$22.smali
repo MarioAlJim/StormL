@@ -3,12 +3,12 @@
 .source "MainActivity.java"
 
 # interfaces
-.implements Landroid/content/DialogInterface$OnClickListener;
+.implements Landroid/view/View$OnClickListener;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lfishnoodle/storm/MainActivity;->showHelpDialog()V
+    value = Lfishnoodle/storm/MainActivity;->initViews()V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -33,7 +33,7 @@
         }
     .end annotation
 
-    .line 534
+    .line 428
     iput-object p1, p0, Lfishnoodle/storm/MainActivity$22;->this$0:Lfishnoodle/storm/MainActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -43,12 +43,27 @@
 
 
 # virtual methods
-.method public onClick(Landroid/content/DialogInterface;I)V
+.method public onClick(Landroid/view/View;)V
     .locals 0
 
-    .line 537
-    invoke-interface {p1}, Landroid/content/DialogInterface;->dismiss()V
+    .line 431
+    iget-object p1, p0, Lfishnoodle/storm/MainActivity$22;->this$0:Lfishnoodle/storm/MainActivity;
 
-    .line 538
+    invoke-static {p1}, Lfishnoodle/storm/MainActivity;->access$5500(Lfishnoodle/storm/MainActivity;)Landroid/widget/CheckBox;
+
+    move-result-object p1
+
+    if-eqz p1, :cond_0
+
+    iget-object p1, p0, Lfishnoodle/storm/MainActivity$22;->this$0:Lfishnoodle/storm/MainActivity;
+
+    invoke-static {p1}, Lfishnoodle/storm/MainActivity;->access$5500(Lfishnoodle/storm/MainActivity;)Landroid/widget/CheckBox;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Landroid/widget/CheckBox;->toggle()V
+
+    .line 432
+    :cond_0
     return-void
 .end method

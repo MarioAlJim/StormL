@@ -33,7 +33,7 @@
         }
     .end annotation
 
-    .line 362
+    .line 410
     iput-object p1, p0, Lfishnoodle/storm/MainActivity$20;->this$0:Lfishnoodle/storm/MainActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -46,10 +46,10 @@
 .method public onClick(Landroid/view/View;)V
     .locals 0
 
-    .line 365
+    .line 413
     iget-object p1, p0, Lfishnoodle/storm/MainActivity$20;->this$0:Lfishnoodle/storm/MainActivity;
 
-    invoke-static {p1}, Lfishnoodle/storm/MainActivity;->access$4200(Lfishnoodle/storm/MainActivity;)Landroid/widget/CheckBox;
+    invoke-static {p1}, Lfishnoodle/storm/MainActivity;->access$5400(Lfishnoodle/storm/MainActivity;)Landroid/widget/CheckBox;
 
     move-result-object p1
 
@@ -57,13 +57,13 @@
 
     iget-object p1, p0, Lfishnoodle/storm/MainActivity$20;->this$0:Lfishnoodle/storm/MainActivity;
 
-    invoke-static {p1}, Lfishnoodle/storm/MainActivity;->access$4200(Lfishnoodle/storm/MainActivity;)Landroid/widget/CheckBox;
+    invoke-static {p1}, Lfishnoodle/storm/MainActivity;->access$5400(Lfishnoodle/storm/MainActivity;)Landroid/widget/CheckBox;
 
     move-result-object p1
 
     invoke-virtual {p1}, Landroid/widget/CheckBox;->toggle()V
 
-    .line 366
+    .line 414
     :cond_0
     return-void
 .end method

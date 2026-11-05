@@ -3,7 +3,7 @@
 .source "MainActivity.java"
 
 # interfaces
-.implements Landroid/view/View$OnClickListener;
+.implements Landroid/widget/CompoundButton$OnCheckedChangeListener;
 
 
 # annotations
@@ -33,7 +33,7 @@
         }
     .end annotation
 
-    .line 286
+    .line 309
     iput-object p1, p0, Lfishnoodle/storm/MainActivity$13;->this$0:Lfishnoodle/storm/MainActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -43,27 +43,16 @@
 
 
 # virtual methods
-.method public onClick(Landroid/view/View;)V
-    .locals 0
+.method public onCheckedChanged(Landroid/widget/CompoundButton;Z)V
+    .locals 1
 
-    .line 289
+    .line 312
     iget-object p1, p0, Lfishnoodle/storm/MainActivity$13;->this$0:Lfishnoodle/storm/MainActivity;
 
-    invoke-static {p1}, Lfishnoodle/storm/MainActivity;->access$3500(Lfishnoodle/storm/MainActivity;)Landroid/widget/CheckBox;
+    const-string v0, "pref_usedrops"
 
-    move-result-object p1
+    invoke-static {p1, v0, p2}, Lfishnoodle/storm/MainActivity;->access$1100(Lfishnoodle/storm/MainActivity;Ljava/lang/String;Z)V
 
-    if-eqz p1, :cond_0
-
-    iget-object p1, p0, Lfishnoodle/storm/MainActivity$13;->this$0:Lfishnoodle/storm/MainActivity;
-
-    invoke-static {p1}, Lfishnoodle/storm/MainActivity;->access$3500(Lfishnoodle/storm/MainActivity;)Landroid/widget/CheckBox;
-
-    move-result-object p1
-
-    invoke-virtual {p1}, Landroid/widget/CheckBox;->toggle()V
-
-    .line 290
-    :cond_0
+    .line 313
     return-void
 .end method

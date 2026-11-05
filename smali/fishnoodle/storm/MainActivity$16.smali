@@ -33,7 +33,7 @@
         }
     .end annotation
 
-    .line 316
+    .line 357
     iput-object p1, p0, Lfishnoodle/storm/MainActivity$16;->this$0:Lfishnoodle/storm/MainActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -46,13 +46,13 @@
 .method public onCheckedChanged(Landroid/widget/CompoundButton;Z)V
     .locals 1
 
-    .line 319
+    .line 360
     iget-object p1, p0, Lfishnoodle/storm/MainActivity$16;->this$0:Lfishnoodle/storm/MainActivity;
 
-    const-string v0, "pref_tapforlightning"
+    const-string v0, "pref_flashlights"
 
-    invoke-static {p1, v0, p2}, Lfishnoodle/storm/MainActivity;->access$2800(Lfishnoodle/storm/MainActivity;Ljava/lang/String;Z)V
+    invoke-static {p1, v0, p2}, Lfishnoodle/storm/MainActivity;->access$1100(Lfishnoodle/storm/MainActivity;Ljava/lang/String;Z)V
 
-    .line 320
+    .line 361
     return-void
 .end method

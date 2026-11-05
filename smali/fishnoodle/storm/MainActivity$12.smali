@@ -3,7 +3,7 @@
 .source "MainActivity.java"
 
 # interfaces
-.implements Landroid/widget/CompoundButton$OnCheckedChangeListener;
+.implements Landroid/view/View$OnClickListener;
 
 
 # annotations
@@ -33,7 +33,7 @@
         }
     .end annotation
 
-    .line 276
+    .line 301
     iput-object p1, p0, Lfishnoodle/storm/MainActivity$12;->this$0:Lfishnoodle/storm/MainActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -43,16 +43,27 @@
 
 
 # virtual methods
-.method public onCheckedChanged(Landroid/widget/CompoundButton;Z)V
-    .locals 1
+.method public onClick(Landroid/view/View;)V
+    .locals 0
 
-    .line 279
+    .line 304
     iget-object p1, p0, Lfishnoodle/storm/MainActivity$12;->this$0:Lfishnoodle/storm/MainActivity;
 
-    const-string v0, "pref_flashlights"
+    invoke-static {p1}, Lfishnoodle/storm/MainActivity;->access$3800(Lfishnoodle/storm/MainActivity;)Landroid/widget/CheckBox;
 
-    invoke-static {p1, v0, p2}, Lfishnoodle/storm/MainActivity;->access$2800(Lfishnoodle/storm/MainActivity;Ljava/lang/String;Z)V
+    move-result-object p1
 
-    .line 280
+    if-eqz p1, :cond_0
+
+    iget-object p1, p0, Lfishnoodle/storm/MainActivity$12;->this$0:Lfishnoodle/storm/MainActivity;
+
+    invoke-static {p1}, Lfishnoodle/storm/MainActivity;->access$3800(Lfishnoodle/storm/MainActivity;)Landroid/widget/CheckBox;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Landroid/widget/CheckBox;->toggle()V
+
+    .line 305
+    :cond_0
     return-void
 .end method

@@ -17,6 +17,7 @@ import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,14 @@ public class MainActivity extends Activity {
     private FrameLayout frameBg1, frameBg2, frameBg3;
     private ImageView checkBg1, checkBg2, checkBg3;
     private TextView statusBackground;
+
+    // Ambient Lighting
+    private TextView statusLighting;
+    private CheckBox checkTimeOfDay;
+    private LinearLayout layoutManualLight;
+    private LinearLayout layoutTodLight;
+    private FrameLayout frameLightBlue, frameLightMidnight, frameLightPurple, frameLightAmber, frameLightAsh, frameLightGreen;
+    private Button btnResetTodColors;
 
     // Clouds & Wind
     private TextView statusClouds;
@@ -44,6 +53,8 @@ public class MainActivity extends Activity {
     private TextView statusLightning;
     private TextView btnBolt1, btnBolt3, btnBolt7, btnBolt12;
     private CheckBox checkFlash, checkRandomBolt;
+    private LinearLayout layoutBoltColor;
+    private FrameLayout frameBoltWhite, frameBoltBlue, frameBoltCyan, frameBoltYellow, frameBoltPurple, frameBoltRed;
 
     // Touch
     private CheckBox checkTapLightning, checkStrikeTouch;
@@ -60,6 +71,8 @@ public class MainActivity extends Activity {
     private int thumbUnselectedId;
     private int chipActiveId;
     private int chipInactiveId;
+    private int swatchSelectedId;
+    private int swatchUnselectedId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +91,8 @@ public class MainActivity extends Activity {
         thumbUnselectedId = resId("card_thumb_unselected", "drawable");
         chipActiveId = resId("chip_active", "drawable");
         chipInactiveId = resId("chip_inactive", "drawable");
+        swatchSelectedId = resId("color_swatch_selected", "drawable");
+        swatchUnselectedId = resId("color_swatch_unselected", "drawable");
 
         initViews();
         loadSettings();
@@ -152,6 +167,65 @@ public class MainActivity extends Activity {
         if (frameBg1 != null) frameBg1.setOnClickListener(bgClickListener);
         if (frameBg2 != null) frameBg2.setOnClickListener(bgClickListener);
         if (frameBg3 != null) frameBg3.setOnClickListener(bgClickListener);
+
+        // Ambient Lighting
+        statusLighting = (TextView) find("statusLighting");
+        checkTimeOfDay = (CheckBox) find("checkTimeOfDay");
+        layoutManualLight = (LinearLayout) find("layoutManualLight");
+        layoutTodLight = (LinearLayout) find("layoutTodLight");
+        frameLightBlue = (FrameLayout) find("frameLightBlue");
+        frameLightMidnight = (FrameLayout) find("frameLightMidnight");
+        frameLightPurple = (FrameLayout) find("frameLightPurple");
+        frameLightAmber = (FrameLayout) find("frameLightAmber");
+        frameLightAsh = (FrameLayout) find("frameLightAsh");
+        frameLightGreen = (FrameLayout) find("frameLightGreen");
+        btnResetTodColors = (Button) find("btnResetTodColors");
+
+        View rowTod = find("rowTimeOfDay");
+        if (rowTod != null) {
+            rowTod.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (checkTimeOfDay != null) checkTimeOfDay.toggle();
+                }
+            });
+        }
+        if (checkTimeOfDay != null) {
+            checkTimeOfDay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    saveBoolean("pref_usetimeofday", isChecked);
+                    updateLightingUi(isChecked);
+                }
+            });
+        }
+
+        View.OnClickListener lightSwatchListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v == frameLightBlue) setLightColorChoice("0.33 0.33 0.7 1");
+                else if (v == frameLightMidnight) setLightColorChoice("0.15 0.15 0.35 1");
+                else if (v == frameLightPurple) setLightColorChoice("0.5 0.25 0.7 1");
+                else if (v == frameLightAmber) setLightColorChoice("0.8 0.35 0.2 1");
+                else if (v == frameLightAsh) setLightColorChoice("0.5 0.5 0.55 1");
+                else if (v == frameLightGreen) setLightColorChoice("0.25 0.65 0.45 1");
+            }
+        };
+        if (frameLightBlue != null) frameLightBlue.setOnClickListener(lightSwatchListener);
+        if (frameLightMidnight != null) frameLightMidnight.setOnClickListener(lightSwatchListener);
+        if (frameLightPurple != null) frameLightPurple.setOnClickListener(lightSwatchListener);
+        if (frameLightAmber != null) frameLightAmber.setOnClickListener(lightSwatchListener);
+        if (frameLightAsh != null) frameLightAsh.setOnClickListener(lightSwatchListener);
+        if (frameLightGreen != null) frameLightGreen.setOnClickListener(lightSwatchListener);
+
+        if (btnResetTodColors != null) {
+            btnResetTodColors.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    resetTodDefaults();
+                }
+            });
+        }
 
         // Clouds
         statusClouds = (TextView) find("statusClouds");
@@ -248,6 +322,13 @@ public class MainActivity extends Activity {
         btnBolt12 = (TextView) find("btnBolt12");
         checkFlash = (CheckBox) find("checkFlash");
         checkRandomBolt = (CheckBox) find("checkRandomBolt");
+        layoutBoltColor = (LinearLayout) find("layoutBoltColor");
+        frameBoltWhite = (FrameLayout) find("frameBoltWhite");
+        frameBoltBlue = (FrameLayout) find("frameBoltBlue");
+        frameBoltCyan = (FrameLayout) find("frameBoltCyan");
+        frameBoltYellow = (FrameLayout) find("frameBoltYellow");
+        frameBoltPurple = (FrameLayout) find("frameBoltPurple");
+        frameBoltRed = (FrameLayout) find("frameBoltRed");
 
         View.OnClickListener boltClickListener = new View.OnClickListener() {
             @Override
@@ -295,9 +376,30 @@ public class MainActivity extends Activity {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     saveBoolean("pref_randomboltcolor", isChecked);
+                    if (layoutBoltColor != null) {
+                        layoutBoltColor.setVisibility(isChecked ? View.GONE : View.VISIBLE);
+                    }
                 }
             });
         }
+
+        View.OnClickListener boltSwatchListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v == frameBoltWhite) setBoltColorChoice("1 1 1 1");
+                else if (v == frameBoltBlue) setBoltColorChoice("0.4 0.7 1 1");
+                else if (v == frameBoltCyan) setBoltColorChoice("0.2 1 1 1");
+                else if (v == frameBoltYellow) setBoltColorChoice("1 0.95 0.4 1");
+                else if (v == frameBoltPurple) setBoltColorChoice("0.85 0.4 1 1");
+                else if (v == frameBoltRed) setBoltColorChoice("1 0.3 0.3 1");
+            }
+        };
+        if (frameBoltWhite != null) frameBoltWhite.setOnClickListener(boltSwatchListener);
+        if (frameBoltBlue != null) frameBoltBlue.setOnClickListener(boltSwatchListener);
+        if (frameBoltCyan != null) frameBoltCyan.setOnClickListener(boltSwatchListener);
+        if (frameBoltYellow != null) frameBoltYellow.setOnClickListener(boltSwatchListener);
+        if (frameBoltPurple != null) frameBoltPurple.setOnClickListener(boltSwatchListener);
+        if (frameBoltRed != null) frameBoltRed.setOnClickListener(boltSwatchListener);
 
         // Touch
         checkTapLightning = (CheckBox) find("checkTapLightning");
@@ -384,6 +486,14 @@ public class MainActivity extends Activity {
         String bg = prefs.getString("pref_background", "bg3");
         setBackgroundChoice(bg);
 
+        // Ambient Lighting
+        boolean tod = prefs.getBoolean("pref_usetimeofday", false);
+        if (checkTimeOfDay != null) checkTimeOfDay.setChecked(tod);
+        updateLightingUi(tod);
+
+        String lightColor = prefs.getString("pref_lightcolor", "0.33 0.33 0.7 1");
+        setLightColorChoice(lightColor);
+
         // Clouds
         String clouds = prefs.getString("pref_numclouds", "9");
         setCloudsChoice(clouds);
@@ -408,6 +518,12 @@ public class MainActivity extends Activity {
 
         boolean randomBolt = prefs.getBoolean("pref_randomboltcolor", false);
         if (checkRandomBolt != null) checkRandomBolt.setChecked(randomBolt);
+        if (layoutBoltColor != null) {
+            layoutBoltColor.setVisibility(randomBolt ? View.GONE : View.VISIBLE);
+        }
+
+        String boltColor = prefs.getString("pref_boltcolor", "1 1 1 1");
+        setBoltColorChoice(boltColor);
 
         // Touch
         boolean tap = prefs.getBoolean("pref_tapforlightning", false);
@@ -450,6 +566,48 @@ public class MainActivity extends Activity {
             else if (is2) statusBackground.setText("Suave");
             else statusBackground.setText("Cargado");
         }
+    }
+
+    private void updateLightingUi(boolean isTimeOfDay) {
+        if (layoutManualLight != null) {
+            layoutManualLight.setVisibility(isTimeOfDay ? View.GONE : View.VISIBLE);
+        }
+        if (layoutTodLight != null) {
+            layoutTodLight.setVisibility(isTimeOfDay ? View.VISIBLE : View.GONE);
+        }
+        if (statusLighting != null) {
+            statusLighting.setText(isTimeOfDay ? "Automático (Hora)" : "Manual");
+        }
+    }
+
+    private void setLightColorChoice(String color) {
+        saveString("pref_lightcolor", color);
+
+        if (frameLightBlue != null) frameLightBlue.setBackgroundResource("0.33 0.33 0.7 1".equals(color) ? swatchSelectedId : swatchUnselectedId);
+        if (frameLightMidnight != null) frameLightMidnight.setBackgroundResource("0.15 0.15 0.35 1".equals(color) ? swatchSelectedId : swatchUnselectedId);
+        if (frameLightPurple != null) frameLightPurple.setBackgroundResource("0.5 0.25 0.7 1".equals(color) ? swatchSelectedId : swatchUnselectedId);
+        if (frameLightAmber != null) frameLightAmber.setBackgroundResource("0.8 0.35 0.2 1".equals(color) ? swatchSelectedId : swatchUnselectedId);
+        if (frameLightAsh != null) frameLightAsh.setBackgroundResource("0.5 0.5 0.55 1".equals(color) ? swatchSelectedId : swatchUnselectedId);
+        if (frameLightGreen != null) frameLightGreen.setBackgroundResource("0.25 0.65 0.45 1".equals(color) ? swatchSelectedId : swatchUnselectedId);
+    }
+
+    private void resetTodDefaults() {
+        saveString("pref_todlightcolor1", "0.3 0.3 0.5 1");
+        saveString("pref_todlightcolor2", "1 0.73 0.58 1");
+        saveString("pref_todlightcolor3", "1 0.98 0.85 1");
+        saveString("pref_todlightcolor4", "1 0.80 0.64 1");
+        Toast.makeText(this, "Colores de ciclo solar restablecidos", Toast.LENGTH_SHORT).show();
+    }
+
+    private void setBoltColorChoice(String color) {
+        saveString("pref_boltcolor", color);
+
+        if (frameBoltWhite != null) frameBoltWhite.setBackgroundResource("1 1 1 1".equals(color) ? swatchSelectedId : swatchUnselectedId);
+        if (frameBoltBlue != null) frameBoltBlue.setBackgroundResource("0.4 0.7 1 1".equals(color) ? swatchSelectedId : swatchUnselectedId);
+        if (frameBoltCyan != null) frameBoltCyan.setBackgroundResource("0.2 1 1 1".equals(color) ? swatchSelectedId : swatchUnselectedId);
+        if (frameBoltYellow != null) frameBoltYellow.setBackgroundResource("1 0.95 0.4 1".equals(color) ? swatchSelectedId : swatchUnselectedId);
+        if (frameBoltPurple != null) frameBoltPurple.setBackgroundResource("0.85 0.4 1 1".equals(color) ? swatchSelectedId : swatchUnselectedId);
+        if (frameBoltRed != null) frameBoltRed.setBackgroundResource("1 0.3 0.3 1".equals(color) ? swatchSelectedId : swatchUnselectedId);
     }
 
     private void setCloudsChoice(String num) {
@@ -529,7 +687,8 @@ public class MainActivity extends Activity {
         builder.setTitle("Acerca de Tormenta");
         builder.setMessage("Fondo de pantalla animado en 3D con simulación de tormenta, nubes y rayos.\n\n" +
                 "• Establecer Fondo: Toca el botón inferior para abrir el previsualizador de Android y aplicar el fondo animado a tu pantalla principal o de bloqueo.\n\n" +
-                "• Personalización: Selecciona el cielo, la densidad de nubes, el tipo de lluvia y la frecuencia de relámpagos.\n\n" +
+                "• Iluminación y Tinte: Cambia la luz ambiental o activa el modo automático para sincronizarse con la hora del día.\n\n" +
+                "• Personalización: Selecciona el cielo, la densidad de nubes, el tipo de lluvia y la frecuencia o color de los relámpagos.\n\n" +
                 "• Interacción Táctil: Activa 'Tocar la pantalla' para generar relámpagos donde toques.");
         builder.setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
             @Override

@@ -3,7 +3,7 @@
 .source "MainActivity.java"
 
 # interfaces
-.implements Landroid/view/View$OnClickListener;
+.implements Landroid/widget/CompoundButton$OnCheckedChangeListener;
 
 
 # annotations
@@ -33,7 +33,7 @@
         }
     .end annotation
 
-    .line 187
+    .line 194
     iput-object p1, p0, Lfishnoodle/storm/MainActivity$6;->this$0:Lfishnoodle/storm/MainActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -43,98 +43,21 @@
 
 
 # virtual methods
-.method public onClick(Landroid/view/View;)V
+.method public onCheckedChanged(Landroid/widget/CompoundButton;Z)V
     .locals 1
 
-    .line 190
-    iget-object v0, p0, Lfishnoodle/storm/MainActivity$6;->this$0:Lfishnoodle/storm/MainActivity;
-
-    invoke-static {v0}, Lfishnoodle/storm/MainActivity;->access$1600(Lfishnoodle/storm/MainActivity;)Landroid/widget/TextView;
-
-    move-result-object v0
-
-    if-ne p1, v0, :cond_0
-
+    .line 197
     iget-object p1, p0, Lfishnoodle/storm/MainActivity$6;->this$0:Lfishnoodle/storm/MainActivity;
 
-    const-string v0, "1"
+    const-string v0, "pref_usetimeofday"
 
-    invoke-static {p1, v0}, Lfishnoodle/storm/MainActivity;->access$1700(Lfishnoodle/storm/MainActivity;Ljava/lang/String;)V
+    invoke-static {p1, v0, p2}, Lfishnoodle/storm/MainActivity;->access$1100(Lfishnoodle/storm/MainActivity;Ljava/lang/String;Z)V
 
-    goto :goto_0
-
-    .line 191
-    :cond_0
-    iget-object v0, p0, Lfishnoodle/storm/MainActivity$6;->this$0:Lfishnoodle/storm/MainActivity;
-
-    invoke-static {v0}, Lfishnoodle/storm/MainActivity;->access$1800(Lfishnoodle/storm/MainActivity;)Landroid/widget/TextView;
-
-    move-result-object v0
-
-    if-ne p1, v0, :cond_1
-
+    .line 198
     iget-object p1, p0, Lfishnoodle/storm/MainActivity$6;->this$0:Lfishnoodle/storm/MainActivity;
 
-    const-string v0, "2"
+    invoke-static {p1, p2}, Lfishnoodle/storm/MainActivity;->access$1200(Lfishnoodle/storm/MainActivity;Z)V
 
-    invoke-static {p1, v0}, Lfishnoodle/storm/MainActivity;->access$1700(Lfishnoodle/storm/MainActivity;Ljava/lang/String;)V
-
-    goto :goto_0
-
-    .line 192
-    :cond_1
-    iget-object v0, p0, Lfishnoodle/storm/MainActivity$6;->this$0:Lfishnoodle/storm/MainActivity;
-
-    invoke-static {v0}, Lfishnoodle/storm/MainActivity;->access$1900(Lfishnoodle/storm/MainActivity;)Landroid/widget/TextView;
-
-    move-result-object v0
-
-    if-ne p1, v0, :cond_2
-
-    iget-object p1, p0, Lfishnoodle/storm/MainActivity$6;->this$0:Lfishnoodle/storm/MainActivity;
-
-    const-string v0, "3"
-
-    invoke-static {p1, v0}, Lfishnoodle/storm/MainActivity;->access$1700(Lfishnoodle/storm/MainActivity;Ljava/lang/String;)V
-
-    goto :goto_0
-
-    .line 193
-    :cond_2
-    iget-object v0, p0, Lfishnoodle/storm/MainActivity$6;->this$0:Lfishnoodle/storm/MainActivity;
-
-    invoke-static {v0}, Lfishnoodle/storm/MainActivity;->access$2000(Lfishnoodle/storm/MainActivity;)Landroid/widget/TextView;
-
-    move-result-object v0
-
-    if-ne p1, v0, :cond_3
-
-    iget-object p1, p0, Lfishnoodle/storm/MainActivity$6;->this$0:Lfishnoodle/storm/MainActivity;
-
-    const-string v0, "4"
-
-    invoke-static {p1, v0}, Lfishnoodle/storm/MainActivity;->access$1700(Lfishnoodle/storm/MainActivity;Ljava/lang/String;)V
-
-    goto :goto_0
-
-    .line 194
-    :cond_3
-    iget-object v0, p0, Lfishnoodle/storm/MainActivity$6;->this$0:Lfishnoodle/storm/MainActivity;
-
-    invoke-static {v0}, Lfishnoodle/storm/MainActivity;->access$2100(Lfishnoodle/storm/MainActivity;)Landroid/widget/TextView;
-
-    move-result-object v0
-
-    if-ne p1, v0, :cond_4
-
-    iget-object p1, p0, Lfishnoodle/storm/MainActivity$6;->this$0:Lfishnoodle/storm/MainActivity;
-
-    const-string v0, "5"
-
-    invoke-static {p1, v0}, Lfishnoodle/storm/MainActivity;->access$1700(Lfishnoodle/storm/MainActivity;Ljava/lang/String;)V
-
-    .line 195
-    :cond_4
-    :goto_0
+    .line 199
     return-void
 .end method

@@ -2,12 +2,6 @@
 .super Lfishnoodle/_engine30/k;
 
 
-# instance fields
-.field d:Landroid/content/Context;
-
-.field e:Lfishnoodle/storm/k;
-
-
 # direct methods
 .method public constructor <init>()V
     .locals 0
@@ -20,45 +14,23 @@
 
 # virtual methods
 .method protected onCreate(Landroid/os/Bundle;)V
-    .locals 3
+    .locals 2
 
     invoke-super {p0, p1}, Lfishnoodle/_engine30/k;->onCreate(Landroid/os/Bundle;)V
 
-    invoke-virtual {p0}, Lfishnoodle/storm/WallpaperSettings;->getPreferenceManager()Landroid/preference/PreferenceManager;
+    new-instance v0, Landroid/content/Intent;
 
-    move-result-object v0
+    const-class v1, Lfishnoodle/storm/MainActivity;
 
-    const-string v1, "WallpaperPrefs"
+    invoke-direct {v0, p0, v1}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
 
-    invoke-virtual {v0, v1}, Landroid/preference/PreferenceManager;->setSharedPreferencesName(Ljava/lang/String;)V
+    const/high16 v1, 0x2000000
 
-    const v0, 0x7f040001
+    invoke-virtual {v0, v1}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
-    invoke-virtual {p0, v0}, Lfishnoodle/storm/WallpaperSettings;->addPreferencesFromResource(I)V
+    invoke-virtual {p0, v0}, Lfishnoodle/storm/WallpaperSettings;->startActivity(Landroid/content/Intent;)V
 
-    iput-object p0, p0, Lfishnoodle/storm/WallpaperSettings;->d:Landroid/content/Context;
-
-    invoke-virtual {p0}, Lfishnoodle/storm/WallpaperSettings;->getPreferenceScreen()Landroid/preference/PreferenceScreen;
-
-    move-result-object v0
-
-    const-string v1, "pref_defaultcolors"
-
-    invoke-virtual {v0, v1}, Landroid/preference/PreferenceScreen;->findPreference(Ljava/lang/CharSequence;)Landroid/preference/Preference;
-
-    move-result-object v0
-
-    new-instance v1, Lfishnoodle/storm/k;
-
-    const/4 v2, 0x0
-
-    invoke-direct {v1, p0, v2}, Lfishnoodle/storm/k;-><init>(Lfishnoodle/storm/WallpaperSettings;Lfishnoodle/storm/k;)V
-
-    iput-object v1, p0, Lfishnoodle/storm/WallpaperSettings;->e:Lfishnoodle/storm/k;
-
-    iget-object v1, p0, Lfishnoodle/storm/WallpaperSettings;->e:Lfishnoodle/storm/k;
-
-    invoke-virtual {v0, v1}, Landroid/preference/Preference;->setOnPreferenceClickListener(Landroid/preference/Preference$OnPreferenceClickListener;)V
+    invoke-virtual {p0}, Lfishnoodle/storm/WallpaperSettings;->finish()V
 
     return-void
 .end method
