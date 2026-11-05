@@ -4,9 +4,7 @@ plugins {
 
 android {
     namespace = "fishnoodle.storm"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "fishnoodle.storm"
@@ -37,12 +35,13 @@ dependencies {
     implementation(libs.material)
 }
 
-tasks.register<Exec>("rebuildOriginalApk") {
+val rebuildApkTask = tasks.register<Exec>("rebuildOriginalApk") {
     description = "Compila, alinea y firma el APK completo con la nueva pantalla de vista previa"
     workingDir = rootDir
     commandLine("cmd", "/c", "build_apk.bat")
 }
 
-tasks.matching { it.name == "assembleDebug" }.configureEach {
-    finalizedBy("rebuildOriginalApk")
+// Asegurar que al ejecutar assembleDebug o installDebug se genere y sobreescriba el APK completo
+tasks.matching { it.name == "assembleDebug" || it.name == "assembleRelease" }.configureEach {
+    finalizedBy(rebuildApkTask)
 }
