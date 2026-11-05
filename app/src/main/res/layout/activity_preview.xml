@@ -1,138 +1,1157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settingsRootContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0F172A">
+    android:background="#111216">
 
-    <!-- Fondo de vista previa -->
-    <ImageView
-        android:id="@+id/img_preview_bg"
+    <!-- Area de Desplazamiento de Ajustes -->
+    <ScrollView
+        android:id="@+id/settingsScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/thumbnail" />
+        android:layout_above="@+id/buttonContainer"
+        android:layout_alignParentTop="true"
+        android:fillViewport="true">
 
-    <!-- Capa de oscurecimiento -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#B30A0F1D" />
-
-    <!-- Contenido Principal -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp"
-        android:gravity="center_horizontal">
-
-        <!-- Encabezado con Icono y Titulo -->
         <LinearLayout
+            android:id="@+id/settingsRootContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="16dp">
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="24dp">
 
-            <ImageView
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:src="@drawable/icon"
-                android:contentDescription="@string/app_name_paid" />
-
+            <!-- Encabezado Principal M3 con Titulo, Subtitulo y Boton de Ayuda -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="14dp">
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="14dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingEnd="12dp">
+
+                    <TextView
+                        android:id="@+id/textViewTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Efecto de Tormenta"
+                        android:textColor="#F2F2F7"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textViewSubtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Fondo de pantalla interactivo"
+                        android:textColor="#999BA8"
+                        android:textSize="12sp"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/buttonHeaderHelp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/badge_circle"
+                    android:src="@drawable/ic_help"
+                    android:tint="#24C6D9"
+                    android:contentDescription="Ayuda" />
+            </LinearLayout>
+
+            <!-- Selector de Tema (Pildoras Segmentadas) -->
+            <LinearLayout
+                android:id="@+id/layoutThemeMode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/card_bg_modern"
+                android:orientation="horizontal"
+                android:padding="4dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/app_name_paid"
-                    android:textColor="#FFFFFF"
-                    android:textSize="22sp"
+                    android:id="@+id/cardThemeAuto"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/chip_active"
+                    android:gravity="center"
+                    android:text="Auto"
+                    android:textColor="#24C6D9"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/cardThemeLight"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/chip_inactive"
+                    android:gravity="center"
+                    android:text="Claro"
+                    android:textColor="#999BA8"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/cardThemeDark"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/chip_inactive"
+                    android:gravity="center"
+                    android:text="Oscuro"
+                    android:textColor="#999BA8"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Card 1: Fondo de Tormenta con Miniaturas Seleccionables -->
+            <LinearLayout
+                android:id="@+id/cardBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/card_bg_modern"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Fila Cabecera Tarjeta -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp">
+
+                    <ImageView
+                        android:id="@+id/iconBackground"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/badge_circle"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_background"
+                        android:tint="#24C6D9"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_toEndOf="@id/iconBackground"
+                        android:layout_toStartOf="@+id/statusBackground"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_centerVertical="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fondo de Tormenta"
+                            android:textColor="#F2F2F7"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Elige la textura y dramatismo del cielo"
+                            android:textColor="#999BA8"
+                            android:textSize="11sp"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/statusBackground"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="Cargado"
+                        android:textColor="#24C6D9"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <!-- Selector Visual Horizontal de Miniaturas (bg1, bg2, bg3) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- bg1: Fuerte -->
+                    <FrameLayout
+                        android:id="@+id/frameBg1"
+                        android:layout_width="0dp"
+                        android:layout_height="116dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/card_thumb_unselected"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg1" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:background="#99000000"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:text="Fuerte"
+                            android:textColor="#FFFFFF"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/checkBg1"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="top|end"
+                            android:layout_margin="6dp"
+                            android:background="@drawable/badge_circle"
+                            android:src="@drawable/ic_check"
+                            android:tint="#24C6D9"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <!-- bg2: Suave -->
+                    <FrameLayout
+                        android:id="@+id/frameBg2"
+                        android:layout_width="0dp"
+                        android:layout_height="116dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        android:background="@drawable/card_thumb_unselected"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg2" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:background="#99000000"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:text="Suave"
+                            android:textColor="#FFFFFF"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/checkBg2"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="top|end"
+                            android:layout_margin="6dp"
+                            android:background="@drawable/badge_circle"
+                            android:src="@drawable/ic_check"
+                            android:tint="#24C6D9"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <!-- bg3: Cargado -->
+                    <FrameLayout
+                        android:id="@+id/frameBg3"
+                        android:layout_width="0dp"
+                        android:layout_height="116dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp"
+                        android:background="@drawable/card_thumb_selected"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg3" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:background="#99000000"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:text="Cargado"
+                            android:textColor="#FFFFFF"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/checkBg3"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="top|end"
+                            android:layout_margin="6dp"
+                            android:background="@drawable/badge_circle"
+                            android:src="@drawable/ic_check"
+                            android:tint="#24C6D9"
+                            android:visibility="visible" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Card 2: Nubes y Viento -->
+            <LinearLayout
+                android:id="@+id/cardClouds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/card_bg_modern"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:id="@+id/iconClouds"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/badge_circle"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_cloud"
+                        android:tint="#24C6D9"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_toEndOf="@id/iconClouds"
+                        android:layout_toStartOf="@+id/statusClouds"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_centerVertical="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nubes y Viento"
+                            android:textColor="#F2F2F7"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Densidad de nubes en capa 3D y velocidad de arrastre"
+                            android:textColor="#999BA8"
+                            android:textSize="11sp"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/statusClouds"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="9 nubes"
+                        android:textColor="#24C6D9"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <!-- Selector de Cantidad de Nubes (5, 7, 9, 11, 13) -->
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fondo de pantalla animado"
-                    android:textColor="#94A3B8"
-                    android:textSize="13sp" />
+                    android:text="Cantidad de nubes en escena:"
+                    android:textColor="#999BA8"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:id="@+id/btnClouds5"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/chip_inactive"
+                        android:gravity="center"
+                        android:text="5"
+                        android:textColor="#999BA8"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnClouds7"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/chip_inactive"
+                        android:gravity="center"
+                        android:text="7"
+                        android:textColor="#999BA8"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnClouds9"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/chip_active"
+                        android:gravity="center"
+                        android:text="9"
+                        android:textColor="#24C6D9"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnClouds11"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/chip_inactive"
+                        android:gravity="center"
+                        android:text="11"
+                        android:textColor="#999BA8"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnClouds13"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/chip_inactive"
+                        android:gravity="center"
+                        android:text="13"
+                        android:textColor="#999BA8"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Selector de Velocidad del Viento -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Velocidad del viento:"
+                    android:textColor="#999BA8"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/btnWind1"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="3dp"
+                        android:background="@drawable/chip_inactive"
+                        android:gravity="center"
+                        android:text="Muy bajo"
+                        android:textColor="#999BA8"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnWind2"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="3dp"
+                        android:background="@drawable/chip_inactive"
+                        android:gravity="center"
+                        android:text="Bajo"
+                        android:textColor="#999BA8"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnWind3"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="3dp"
+                        android:background="@drawable/chip_active"
+                        android:gravity="center"
+                        android:text="Medio"
+                        android:textColor="#24C6D9"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnWind4"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="3dp"
+                        android:background="@drawable/chip_inactive"
+                        android:gravity="center"
+                        android:text="Alto"
+                        android:textColor="#999BA8"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnWind5"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/chip_inactive"
+                        android:gravity="center"
+                        android:text="Muy alto"
+                        android:textColor="#999BA8"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-        <!-- Tarjeta de Vista Previa Central -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="20dp"
-            android:background="#1E293B">
-
-            <ImageView
-                android:id="@+id/img_card_preview"
+            <!-- Card 3: Lluvia y Efectos de Agua -->
+            <LinearLayout
+                android:id="@+id/cardRain"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/bg1" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top|center_horizontal"
-                android:layout_marginTop="16dp"
-                android:background="#80000000"
-                android:paddingLeft="12dp"
-                android:paddingTop="6dp"
-                android:paddingRight="12dp"
-                android:paddingBottom="6dp"
-                android:text="Vista Previa de Tormenta"
-                android:textColor="#E2E8F0"
-                android:textSize="12sp" />
-        </FrameLayout>
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/card_bg_modern"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        <!-- Boton Principal: Establecer Fondo -->
-        <Button
-            android:id="@+id/btn_apply_wallpaper"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:text="Establecer fondo de pantalla"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="12dp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
 
-        <!-- Fila de Botones Secundarios -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/iconRain"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/badge_circle"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_rain"
+                        android:tint="#24C6D9"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true" />
 
-            <Button
-                android:id="@+id/btn_open_settings"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:layout_marginRight="6dp"
-                android:text="Ajustes"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_toEndOf="@id/iconRain"
+                        android:layout_toStartOf="@+id/statusRain"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_centerVertical="true">
 
-            <Button
-                android:id="@+id/btn_open_howto"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:layout_marginLeft="6dp"
-                android:text="Cómo usar"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lluvia y Gotas"
+                            android:textColor="#F2F2F7"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Modo de precipitación y gotas en el lente"
+                            android:textColor="#999BA8"
+                            android:textSize="11sp"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/statusRain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="Por nube"
+                        android:textColor="#24C6D9"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <!-- Selector de Modo de Lluvia (0=Ninguna, 1=Por nube, 2=Todas partes, 3=Ambas) -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Modo de precipitación:"
+                    android:textColor="#999BA8"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:id="@+id/btnRain0"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="3dp"
+                        android:background="@drawable/chip_inactive"
+                        android:gravity="center"
+                        android:text="Ninguna"
+                        android:textColor="#999BA8"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnRain1"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="3dp"
+                        android:background="@drawable/chip_active"
+                        android:gravity="center"
+                        android:text="Por nube"
+                        android:textColor="#24C6D9"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnRain2"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="3dp"
+                        android:background="@drawable/chip_inactive"
+                        android:gravity="center"
+                        android:text="Global"
+                        android:textColor="#999BA8"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnRain3"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/chip_inactive"
+                        android:gravity="center"
+                        android:text="Intensa"
+                        android:textColor="#999BA8"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Checkbox / Switch: Gotas en Pantalla -->
+                <RelativeLayout
+                    android:id="@+id/rowDrops"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="6dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gotas de agua en la pantalla"
+                        android:textColor="#F2F2F7"
+                        android:textSize="13sp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true" />
+
+                    <CheckBox
+                        android:id="@+id/checkDrops"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!-- Card 4: Rayos y Relampagos -->
+            <LinearLayout
+                android:id="@+id/cardLightning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/card_bg_modern"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:id="@+id/iconLightning"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/badge_circle"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_lightning"
+                        android:tint="#24C6D9"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_toEndOf="@id/iconLightning"
+                        android:layout_toStartOf="@+id/statusLightning"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_centerVertical="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rayos y Relámpagos"
+                            android:textColor="#F2F2F7"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Frecuencia de descargas y destellos ambientales"
+                            android:textColor="#999BA8"
+                            android:textSize="11sp"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/statusLightning"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="Frecuencia 3"
+                        android:textColor="#24C6D9"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <!-- Selector de Frecuencia de Rayos (1, 3, 7, 12) -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Frecuencia de relámpagos:"
+                    android:textColor="#999BA8"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:id="@+id/btnBolt1"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="3dp"
+                        android:background="@drawable/chip_inactive"
+                        android:gravity="center"
+                        android:text="1 (Raro)"
+                        android:textColor="#999BA8"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnBolt3"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="3dp"
+                        android:background="@drawable/chip_active"
+                        android:gravity="center"
+                        android:text="3 (Medio)"
+                        android:textColor="#24C6D9"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnBolt7"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="3dp"
+                        android:background="@drawable/chip_inactive"
+                        android:gravity="center"
+                        android:text="7 (Activo)"
+                        android:textColor="#999BA8"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnBolt12"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/chip_inactive"
+                        android:gravity="center"
+                        android:text="12 (Furia)"
+                        android:textColor="#999BA8"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Switch: Destellos de luz ambiental -->
+                <RelativeLayout
+                    android:id="@+id/rowFlash"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Destellos de iluminación ambiental"
+                        android:textColor="#F2F2F7"
+                        android:textSize="13sp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true" />
+
+                    <CheckBox
+                        android:id="@+id/checkFlash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+
+                <!-- Switch: Color aleatorio de rayos -->
+                <RelativeLayout
+                    android:id="@+id/rowRandomBolt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Color aleatorio de rayos"
+                        android:textColor="#F2F2F7"
+                        android:textSize="13sp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true" />
+
+                    <CheckBox
+                        android:id="@+id/checkRandomBolt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!-- Card 5: Interaccion Tactil -->
+            <LinearLayout
+                android:id="@+id/cardTouch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/card_bg_modern"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <ImageView
+                        android:id="@+id/iconTouch"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/badge_circle"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_touch"
+                        android:tint="#24C6D9"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_toEndOf="@id/iconTouch"
+                        android:layout_marginStart="12dp"
+                        android:layout_centerVertical="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Interacción Táctil"
+                            android:textColor="#F2F2F7"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dispara rayos tocando cualquier zona de la pantalla"
+                            android:textColor="#999BA8"
+                            android:textSize="11sp"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <!-- Switch: Tocar para rayos -->
+                <RelativeLayout
+                    android:id="@+id/rowTapLightning"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tocar la pantalla para lanzar rayos"
+                        android:textColor="#F2F2F7"
+                        android:textSize="13sp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true" />
+
+                    <CheckBox
+                        android:id="@+id/checkTapLightning"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+
+                <!-- Switch: Impacto en posicion tocada -->
+                <RelativeLayout
+                    android:id="@+id/rowStrikeTouch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Impactar exactamente en el toque"
+                        android:textColor="#F2F2F7"
+                        android:textSize="13sp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true" />
+
+                    <CheckBox
+                        android:id="@+id/checkStrikeTouch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!-- Card 6: Camara y Rendimiento -->
+            <LinearLayout
+                android:id="@+id/cardCamera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/card_bg_modern"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:id="@+id/iconCamera"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/badge_circle"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_tune"
+                        android:tint="#24C6D9"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_toEndOf="@id/iconCamera"
+                        android:layout_marginStart="12dp"
+                        android:layout_centerVertical="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cámara y Rendimiento"
+                            android:textColor="#F2F2F7"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Velocidad de desplazamiento y optimización"
+                            android:textColor="#999BA8"
+                            android:textSize="11sp"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <!-- Velocidad de Camara (0=Baja, 1=Media, 2=Alta) -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Velocidad de movimiento de cámara:"
+                    android:textColor="#999BA8"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/btnCam0"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/chip_inactive"
+                        android:gravity="center"
+                        android:text="Baja"
+                        android:textColor="#999BA8"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnCam1"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/chip_active"
+                        android:gravity="center"
+                        android:text="Media"
+                        android:textColor="#24C6D9"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnCam2"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/chip_inactive"
+                        android:gravity="center"
+                        android:text="Alta"
+                        android:textColor="#999BA8"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Switch: Modo minimalista -->
+                <RelativeLayout
+                    android:id="@+id/rowMinimalist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Modo minimalista (ahorro de batería)"
+                        android:textColor="#F2F2F7"
+                        android:textSize="13sp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true" />
+
+                    <CheckBox
+                        android:id="@+id/checkMinimalist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+            </LinearLayout>
+
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
+    <!-- Barra Inferior Flotante Pinned con Boton de Establecer Fondo -->
+    <FrameLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#111216"
+        android:padding="12dp"
+        android:elevation="12dp">
+
+        <Button
+            android:id="@+id/buttonApplyWallpaper"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:background="@drawable/button_apply_modern"
+            android:drawableStart="@drawable/ic_background"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="ESTABLECER FONDO DE PANTALLA"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </FrameLayout>
 
 </RelativeLayout>

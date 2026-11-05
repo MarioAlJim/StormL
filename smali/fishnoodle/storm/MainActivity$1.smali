@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lfishnoodle/storm/MainActivity;->onCreate(Landroid/os/Bundle;)V
+    value = Lfishnoodle/storm/MainActivity;->initViews()V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -33,7 +33,7 @@
         }
     .end annotation
 
-    .line 30
+    .line 99
     iput-object p1, p0, Lfishnoodle/storm/MainActivity$1;->this$0:Lfishnoodle/storm/MainActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -46,11 +46,11 @@
 .method public onClick(Landroid/view/View;)V
     .locals 0
 
-    .line 33
+    .line 102
     iget-object p1, p0, Lfishnoodle/storm/MainActivity$1;->this$0:Lfishnoodle/storm/MainActivity;
 
     invoke-static {p1}, Lfishnoodle/storm/MainActivity;->access$000(Lfishnoodle/storm/MainActivity;)V
 
-    .line 34
+    .line 103
     return-void
 .end method
