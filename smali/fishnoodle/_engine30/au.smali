@@ -60,7 +60,7 @@
 
     move-result-object v0
 
-    const-string v0, "fishnoodle.storm.WallpaperService"
+    const-string v0, "com.marioaljim.storml.WallpaperService"
 
     new-instance v1, Landroid/content/ComponentName;
 

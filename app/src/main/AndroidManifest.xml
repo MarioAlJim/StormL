@@ -17,7 +17,7 @@
 
         <!-- Pantalla de Inicio / Vista Previa (Launcher para Android moderno) -->
         <activity
-            android:name="fishnoodle.storm.MainActivity"
+            android:name="com.marioaljim.storml.MainActivity"
             android:exported="true"
             android:icon="@drawable/icon"
             android:label="@string/app_name_paid"
@@ -30,7 +30,7 @@
 
         <!-- Servicio Principal de Fondo de Pantalla Animado -->
         <service
-            android:name="fishnoodle.storm.WallpaperService"
+            android:name="com.marioaljim.storml.WallpaperService"
             android:enabled="true"
             android:exported="true"
             android:icon="@drawable/icon"
@@ -46,14 +46,14 @@
 
         <!-- Actividad de Configuracion / Ajustes del Wallpaper -->
         <activity
-            android:name="fishnoodle.storm.WallpaperSettings"
+            android:name="com.marioaljim.storml.WallpaperSettings"
             android:exported="true"
             android:icon="@drawable/icon"
             android:label="@string/app_name_paid" />
 
         <!-- Actividad Informativa / Como usar -->
         <activity
-            android:name="fishnoodle.storm.HowToActivity"
+            android:name="com.marioaljim.storml.HowToActivity"
             android:exported="true"
             android:icon="@drawable/icon"
             android:label="@string/app_name_paid"
@@ -66,7 +66,7 @@
 
         <!-- Servicio de Daydream / Protector de Pantalla -->
         <service
-            android:name="fishnoodle.storm.DreamService"
+            android:name="com.marioaljim.storml.DreamService"
             android:exported="false"
             android:icon="@drawable/icon"
             android:label="@string/app_name_paid">

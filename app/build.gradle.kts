@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "fishnoodle.storm"
+    namespace = "com.marioaljim.storml"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "fishnoodle.storm.remaster"
+        applicationId = "com.marioaljim.storml"
         minSdk = 21
         targetSdk = 34
         versionCode = 23

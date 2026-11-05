@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<dream android:settingsActivity="fishnoodle.storm.WallpaperSettings"
+<dream android:settingsActivity="com.marioaljim.storml.MainActivity"
   xmlns:android="http://schemas.android.com/apk/res/android" />

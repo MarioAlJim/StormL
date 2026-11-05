@@ -1,5 +1,5 @@
 version: 2.9.3
-apkFileName: fishnoodle.storm.23.apk
+apkFileName: StormL.apk
 isFrameworkApk: false
 usesFramework:
   ids:
